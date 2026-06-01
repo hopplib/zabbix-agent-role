@@ -1,0 +1,24 @@
+---
+- name: Configure passive Server list
+  ansible.builtin.lineinfile:
+    path: "{{ zabbix_agent_conf }}"
+    regexp: '^Server='
+    line: "Server={{ zabbix_servers | join(',') }}"
+    create: no
+  notify: restart zabbix-agent
+
+- name: Configure active ServerActive list
+  ansible.builtin.lineinfile:
+    path: "{{ zabbix_agent_conf }}"
+    regexp: '^ServerActive='
+    line: "ServerActive={{ zabbix_servers | join(',') }}"
+    create: no
+  notify: restart zabbix-agent
+
+- name: Set Hostname in agent config
+  ansible.builtin.lineinfile:
+    path: "{{ zabbix_agent_conf }}"
+    regexp: '^Hostname='
+    line: "Hostname={{ zabbix_hostname }}"
+    create: no
+  notify: restart zabbix-agent

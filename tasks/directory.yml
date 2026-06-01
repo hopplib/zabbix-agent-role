@@ -1,0 +1,9 @@
+---
+- name: Ensure Zabbix data directory exists with correct ownership
+  ansible.builtin.file:
+    path: "{{ zabbix_dir }}"
+    state: directory
+    owner: "{{ zabbix_user }}"
+    group: "{{ zabbix_group }}"
+    mode: "{{ zabbix_dir_mode }}"
+  notify: restart zabbix-agent

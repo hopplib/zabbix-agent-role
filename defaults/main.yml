@@ -1,0 +1,25 @@
+---
+# Zabbix version
+zabbix_version: "6.0"
+zabbix_ubuntu_release: "ubuntu22.04"
+
+# Repository
+zabbix_repo_deb_url: "https://repo.zabbix.com/zabbix/{{ zabbix_version }}/ubuntu/pool/main/z/zabbix-release/zabbix-release_{{ zabbix_version }}-4+{{ zabbix_ubuntu_release }}_all.deb"
+
+# Servers (passive + active)
+zabbix_servers:
+  - zabbix
+  - zabbix-proxy
+
+# Agent config
+zabbix_agent_conf: /etc/zabbix/zabbix_agentd.conf
+zabbix_service_name: zabbix-agent
+
+# Data directory
+zabbix_dir: /var/lib/zabbix
+zabbix_user: zabbix
+zabbix_group: zabbix
+zabbix_dir_mode: "0755"
+
+# Hostname in agent config (defaults to system hostname)
+zabbix_hostname: "{{ ansible_hostname }}"

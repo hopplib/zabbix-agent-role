@@ -1,0 +1,6 @@
+---
+- name: Start and enable Zabbix Agent service
+  ansible.builtin.service:
+    name: "{{ zabbix_service_name }}"
+    state: started
+    enabled: yes

@@ -1,0 +1,16 @@
+---
+- name: Install Zabbix Agent
+  ansible.builtin.import_tasks: install.yml
+  tags: [zabbix, install]
+
+- name: Configure Zabbix Agent
+  ansible.builtin.import_tasks: configure.yml
+  tags: [zabbix, configure]
+
+- name: Manage Zabbix data directory
+  ansible.builtin.import_tasks: directory.yml
+  tags: [zabbix, directory]
+
+- name: Enable and start Zabbix Agent service
+  ansible.builtin.import_tasks: service.yml
+  tags: [zabbix, service]
